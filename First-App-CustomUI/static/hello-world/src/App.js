@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { invoke } from '@forge/bridge';
-
+import Button from '@atlaskit/button';
 function App() {
     const [data, setData] = useState(null);
 
@@ -10,6 +10,7 @@ function App() {
 
     return (
         <div>
+            <Button appearance='primary'>Button</Button>
             <img src="./dog.jpeg"/>
             {data ? data : 'Loading...'}
         </div>
