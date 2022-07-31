@@ -1,13 +1,15 @@
-import ForgeUI, { render, ProjectPage, IssuePanel, IssueGlance, IssueAction, Fragment, Text, useState, useProductContext, ModalDialog } from '@forge/ui';
+import ForgeUI, { render, AdminPage, ProjectPage, IssuePanel, IssueGlance, IssueAction, Fragment, Text, useState, useProductContext, ModalDialog } from '@forge/ui';
 import api, { route } from '@forge/api';
 
 const fetchNumberOfIssues = async () => {
     const response = await api.asApp().requestJira(route`/rest/api/3/search`);
     const data = await response.json();
     return data.total;
-}
+};
 
 const App = () => {
+    const context = useProductContext();
+    console.log(JSON.stringify(context));
     const [numOfIssues] = useState(async () => await fetchNumberOfIssues());
     return (
         <Fragment>
@@ -29,7 +31,7 @@ const Panel = () => {
             <Text>Issue key: {issueKey}</Text>
         </Fragment>
     );
-}
+};
 
 export const panel = render(
     <IssuePanel>
@@ -57,10 +59,18 @@ const Action = () => {
     }
     console.log('Performing action');
     return null;
-}
+};
 
 export const action = render(
     <IssueAction>
         <Action/>
     </IssueAction>
+);
+
+export const admin = render(
+    <AdminPage>
+        <Fragment>
+            <Text>Some admin stuff here</Text>
+        </Fragment>
+    </AdminPage>
 );
