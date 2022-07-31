@@ -8,11 +8,24 @@ modules:
       title: My Issue Panel
       function: panel
       icon: https://developer.atlassian.com/platform/forge/images/issue-panel-icon.svg
+  jira:issueGlance:
+    - key: my-issue-glance
+      title: My Issue Glance
+      function: glance
+      label: Issue Glance
+  jira:issueAction:
+    - key: my-issue-action
+      title: Issue Action
+      function: action
   function:
     - key: main
       handler: index.run
     - key: panel
       handler: index.panel
+    - key: glance
+      handler: index.glance
+    - key: action
+      handler: index.action
 app:
   id: ari:cloud:ecosystem::app/3aff1730-9222-4a2d-bc60-4413cdd592aa
 permissions:

@@ -1,4 +1,4 @@
-import ForgeUI, { render, ProjectPage, IssuePanel, Fragment, Text, useState, useProductContext } from '@forge/ui';
+import ForgeUI, { render, ProjectPage, IssuePanel, IssueGlance, IssueAction, Fragment, Text, useState, useProductContext, ModalDialog } from '@forge/ui';
 import api, { route } from '@forge/api';
 
 const fetchNumberOfIssues = async () => {
@@ -30,8 +30,37 @@ const Panel = () => {
         </Fragment>
     );
 }
+
 export const panel = render(
     <IssuePanel>
         <Panel />
     </IssuePanel>
+);
+
+export const glance = render(
+    <IssueGlance>
+        <Fragment>
+            <Text>Information about this issue glance</Text>
+        </Fragment>
+    </IssueGlance>
+);
+
+const Action = () => {
+    const [visible, setVisible] = useState(true);
+
+    if (visible) {
+        return (
+            <ModalDialog closeButtonText="Perform" header="My Action" onClose={() => setVisible(false)}>
+                <Text>We will peform action</Text>
+            </ModalDialog>
+        );
+    }
+    console.log('Performing action');
+    return null;
+}
+
+export const action = render(
+    <IssueAction>
+        <Action/>
+    </IssueAction>
 );
