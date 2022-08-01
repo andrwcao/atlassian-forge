@@ -1,4 +1,4 @@
-import ForgeUI, { render, AdminPage, ProjectPage, IssuePanel, IssueGlance, IssueAction, Fragment, Text, useState, useProductContext, ModalDialog } from '@forge/ui';
+import ForgeUI, { render, AdminPage, ProjectPage, IssuePanel, IssueGlance, IssueAction, CustomField, Fragment, Text, useState, useProductContext, ModalDialog } from '@forge/ui';
 import api, { route } from '@forge/api';
 
 const fetchNumberOfIssues = async () => {
