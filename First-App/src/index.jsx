@@ -74,3 +74,7 @@ export const admin = render(
         </Fragment>
     </AdminPage>
 );
+
+export async function trigger(event, context) {
+    console.log(JSON.stringify(event));
+};

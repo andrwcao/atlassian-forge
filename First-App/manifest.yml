@@ -21,6 +21,10 @@ modules:
     - key: my-admin-page
       title: My First Admin
       function: admin
+  trigger:
+    - key: my-trigger
+      function: trigger
+      events: ['avi:jira:updated:issue']
   function:
     - key: main
       handler: index.run
@@ -32,6 +36,8 @@ modules:
       handler: index.action
     - key: admin
       handler: index.admin
+    - key: trigger
+      handler: index.trigger
 app:
   id: ari:cloud:ecosystem::app/3aff1730-9222-4a2d-bc60-4413cdd592aa
 permissions:
