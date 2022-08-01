@@ -78,3 +78,21 @@ export const admin = render(
 export async function trigger(event, context) {
     console.log(JSON.stringify(event));
 };
+
+const FieldData = () => {
+    const { extensionContext: {fieldValue}} = useProductContext();
+    
+    let result = '';
+    for (let i=0; i < fieldValue; i++) {
+        result += '*';
+    }
+    return (
+        <Text>{result}</Text>
+    );
+};
+
+export const fieldRenderer = render(
+    <CustomField>
+        <FieldData />
+    </CustomField>
+);
