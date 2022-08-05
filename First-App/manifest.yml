@@ -35,10 +35,47 @@ modules:
         expression: 'value <= 5 && value >= 0'
         message: The value must be between 0 and 5 inclusive
       function: field-renderer
+    - key: forge-currency-exchange
+      name: Currency Exchange
+      description: Custom field type.
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-countries-icon.svg
+      type: object
+      formatter:
+        expression: '`${value.currencySummary.amount} ${value.currencySummary.currency}`'
+      readOnly: false
+      function: custom
+      edit:
+        function: edit
+      contextConfig:
+        function: configureContext
+      schema:
+        properties:
+          prop1:
+            amount: number
+            currency: string
+          prop2:
+            amount: number
+            currency: string
+          prop3:
+            amount: number
+            currency: string
+          prop4:
+            amount: number
+            currency: string
+          prop5:
+            amount: number
+            currency: string
+          currencySummary:
+            amount:
+              type: number
+              searchAlias: Amount
+            currency:
+              type: string
+              searchAlias: Currency
   trigger:
     - key: my-trigger
       function: trigger
-      events: ['avi:jira:updated:issue']
+      events: [ 'avi:jira:updated:issue' ]
   function:
     - key: main
       handler: index.run
@@ -54,8 +91,15 @@ modules:
       handler: index.trigger
     - key: field-renderer
       handler: index.fieldRenderer
+    - key: custom
+      handler: index.runView
+    - key: edit
+      handler: index.runEdit
+    - key: configureContext
+      handler: index.runContextConfig
 app:
   id: ari:cloud:ecosystem::app/3aff1730-9222-4a2d-bc60-4413cdd592aa
 permissions:
   scopes:
+    - manage:jira-configuration
     - read:jira-work
