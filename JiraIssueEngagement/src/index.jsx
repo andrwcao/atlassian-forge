@@ -93,3 +93,13 @@ export async function trigger(event, context) {
   await updateEngagementScore(event.issue.id, numComments);
 }
 
+export async function scheduledTrigger(event) {
+  const response = await api.asApp().requestJira(route`/rest/api/3/search?maxResults=100`);
+  const data = await response.json();
+  
+  for (const issue of data.issues) {
+      let numComments = await fetchNumberOfComments(issue.key);
+      await updateEngagementScore(issue.id, numComments);
+    }
+}
+
