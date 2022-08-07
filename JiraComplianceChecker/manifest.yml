@@ -1,17 +1,28 @@
 modules:
   jira:issuePanel:
-    - key: jiracompliancechecker-hello-world-panel
+    - key: jiracompliancechecker-issue-panel
       resource: main
       resolver:
         function: resolver
       viewportSize: medium
       title: JiraComplianceChecker
       icon: https://developer.atlassian.com/platform/forge/images/issue-panel-icon.svg
+  jira:projectPage:
+    - key: project-page
+      title: Compliance Overview
+      resource: project-page-resource
+      resolver:
+        function: resolver
   function:
     - key: resolver
       handler: index.handler
 resources:
   - key: main
-    path: static/hello-world/build
+    path: static/issue-panel/build
+  - key: project-page-resource
+    path: static/project-page/build
+permissions:
+  scopes:
+    - 'read:jira-work'
 app:
   id: ari:cloud:ecosystem::app/ca965788-4c74-4301-aa8a-9adda84d1297
